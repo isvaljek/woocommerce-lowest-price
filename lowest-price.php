@@ -33,6 +33,7 @@ class Lowest_Price
     public static $plugin_path;
     public static $plugin_version;
     protected static $_instance = null;
+    public $_providers = [];
 
     public static function instance()
     {
@@ -80,7 +81,7 @@ class Lowest_Price
 
         foreach (self::$providers as $class) {
             $class_object = '\Lowest_Price\\' . $class;
-            new $class_object;
+            $this->_providers[$class] = new $class_object;
         }
     }
 
