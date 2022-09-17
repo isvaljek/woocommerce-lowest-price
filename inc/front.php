@@ -35,10 +35,9 @@ class Front
 
     public function get_price_html($price_html, $product)
     {
-
-        if (is_admin()) {
-            return $price_html;
-        }
+        // if (is_admin()) {
+        //     return $price_html;
+        // }
 
         // CHANGE PRICES ONLY IF PRODUCT IS ON SALE
         if (!$product->is_on_sale()) {
@@ -68,7 +67,6 @@ class Front
                 $actual_price = wc_get_price_to_display($product, array('price' => $min_price));
             }
         } else {
-
             // OTHER PRODUCTS (SIMPLE, VARIANTS, GROUPED, ETC.)
 
             $regular_price = $product->get_regular_price();
@@ -76,6 +74,9 @@ class Front
             $actual_price = wc_get_price_to_display($product);
         }
 
+        if ($actual_price >= $this->get_lowest_price($product->get_id(), $regular_price)) {
+            return $price_html;
+        }
 
         $lowest_price_in_30_days = wc_get_price_to_display($product, array('price' => $this->get_lowest_price($product->get_id(), $regular_price)));
 
