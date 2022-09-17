@@ -1,12 +1,14 @@
 <?php
+
 namespace Lowest_Price\config;
 
-class uninstall {
+class uninstall
+{
 
-    public static function run_uninstall() {
+    public static function run_uninstall()
+    {
 
         // @todo: remove table?
 
     }
-
 }
