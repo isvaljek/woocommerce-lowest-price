@@ -16,7 +16,7 @@ class Front
 
             add_action('wp_enqueue_scripts', array($this, 'wp_enqueue_style'));
 
-            add_action('woocommerce_product_meta_end', array($this, 'display_lowest_price_in_meta'));
+            add_action('woocommerce_single_product_summary', array($this, 'display_lowest_price_in_meta'), 31);
         } else {
 
             add_filter('woocommerce_get_price_html', array($this, 'get_price_html'), 1000, 2);
